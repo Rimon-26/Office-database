@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#1B4D3E">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<title>মাধাইয়া মুক্তিযোদ্ধা স্মৃতি কলেজ, চান্দিনা - শিক্ষক কর্মচারীর তথ্য</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Tiro+Bangla&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green-deep:#1B4D3E;
+    --green-mid:#256B50;
+    --gold:#C9A227;
+    --gold-light:#E8D48A;
+    --off-white:#FAF6EC;
+    --paper:#FFFDF6;
+    --ink:#26301F;
+    --ink-soft:#5b6350;
+    --maroon:#7A2E2E;
+    --shadow: 0 2px 10px rgba(27,77,62,0.12);
+    --radius: 10px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Hind Siliguri', sans-serif;
+    background:var(--off-white);
+    color:var(--ink);
+    min-height:100vh;
+    padding-bottom:70px;
+  }
+  header.letterhead{
+    background:linear-gradient(180deg, var(--green-deep), var(--green-mid));
+    color:var(--paper);
+    padding:18px 16px 22px;
+    position:relative;
+    border-bottom:4px solid var(--gold);
+    box-shadow:var(--shadow);
+  }
+  header.letterhead::before{
+    content:"";
+    position:absolute;
+    inset:6px;
+    border:1px solid rgba(232,212,138,0.55);
+    border-radius:6px;
+    pointer-events:none;
+  }
+  .lh-inner{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    position:relative;
+    z-index:1;
+  }
+  .lh-emblem{
+    width:52px;height:52px;flex:0 0 52px;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, var(--gold-light), var(--gold) 70%);
+    display:flex;align-items:center;justify-content:center;
+    font-size:22px;
+    border:2px solid var(--paper);
+    box-shadow:0 0 0 2px var(--gold);
+  }
+  .lh-text h1{
+    margin:0;
+    font-size:19px;
+    font-weight:700;
+    letter-spacing:.2px;
+    font-family:'Tiro Bangla', 'Hind Siliguri', serif;
+  }
+  .lh-text p{
+    margin:2px 0 0;
+    font-size:12.5px;
+    color:var(--gold-light);
+    font-weight:500;
+  }
+  .lh-sub{
+    margin-top:10px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:relative;
+    z-index:1;
+  }
+  .lh-sub .badge{
+    font-size:13px;
+    background:rgba(255,255,255,0.12);
+    padding:4px 10px;
+    border-radius:20px;
+    border:1px solid rgba(232,212,138,0.4);
+  }
+  #lockBtn{
+    background:var(--gold);
+    color:var(--green-deep);
+    border:none;
+    padding:6px 14px;
+    border-radius:20px;
+    font-weight:600;
+    font-size:13px;
+    font-family:inherit;
+    display:flex;align-items:center;gap:6px;
+    cursor:pointer;
+  }
+  #lockBtn.unlocked{background:var(--maroon);color:var(--paper);}
+
+  .toolbar{
+    padding:12px 14px;
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    align-items:center;
+  }
+  .search-box{
+    flex:1;
+    min-width:160px;
+    position:relative;
+  }
+  .search-box input{
+    width:100%;
+    padding:9px 12px;
+    border-radius:8px;
+    border:1.5px solid var(--gold-light);
+    background:var(--paper);
+    font-family:inherit;
+    font-size:14px;
+    color:var(--ink);
+  }
+  .btn{
+    font-family:inherit;
+    border:none;
+    padding:9px 14px;
+    border-radius:8px;
+    font-size:13.5px;
+    font-weight:600;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .btn-green{background:var(--green-deep);color:var(--paper);}
+  .btn-gold{background:var(--gold);color:var(--green-deep);}
+  .btn-outline{background:transparent;color:var(--green-deep);border:1.5px solid var(--green-deep);}
+  .btn-maroon{background:var(--maroon);color:var(--paper);}
+  .btn:disabled{opacity:.4;cursor:not-allowed;}
+
+  .stats{
+    display:flex;
+    gap:8px;
+    padding:0 14px 10px;
+    overflow-x:auto;
+  }
+  .stat-chip{
+    background:var(--paper);
+    border:1px solid var(--gold-light);
+    border-left:4px solid var(--green-deep);
+    border-radius:8px;
+    padding:8px 12px;
+    min-width:110px;
+    flex:0 0 auto;
+  }
+  .stat-chip b{display:block;font-size:17px;color:var(--green-deep);}
+  .stat-chip span{font-size:11.5px;color:var(--ink-soft);}
+  .stat-chip.warn{border-left-color:var(--maroon);}
+  .stat-chip.warn b{color:var(--maroon);}
+
+  #listArea{padding:6px 14px 14px;display:flex;flex-direction:column;gap:10px;}
+  .teacher-card{
+    background:var(--paper);
+    border:1px solid rgba(27,77,62,0.15);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:12px;
+    display:flex;
+    gap:12px;
+    cursor:pointer;
+    position:relative;
+    overflow:hidden;
+  }
+  .teacher-card::before{
+    content:attr(data-serial);
+    position:absolute;
+    top:0;left:0;
+    background:var(--green-deep);
+    color:var(--gold-light);
+    font-size:11px;
+    padding:2px 8px 3px 6px;
+    border-bottom-right-radius:8px;
+    font-weight:600;
+  }
+  .tc-photo{
+    width:58px;height:58px;border-radius:8px;
+    object-fit:cover;
+    border:2px solid var(--gold-light);
+    flex:0 0 58px;
+    margin-top:8px;
+    background:#eee;
+  }
+  .tc-photo.placeholder{
+    display:flex;align-items:center;justify-content:center;
+    font-size:22px;color:var(--green-mid);background:#eef3ef;
+  }
+  .tc-info{flex:1;min-width:0;margin-top:6px;}
+  .tc-info h3{margin:0 0 2px;font-size:15.5px;color:var(--green-deep);font-weight:700;}
+  .tc-info .tc-subject{font-size:12.5px;color:var(--ink-soft);margin-bottom:4px;}
+  .tc-meta{display:flex;flex-wrap:wrap;gap:6px;}
+  .tc-meta span{
+    font-size:11px;
+    background:#eef3ef;
+    color:var(--green-mid);
+    padding:2px 7px;
+    border-radius:10px;
+  }
+  .tc-meta span.retire-soon{background:#f7e6e6;color:var(--maroon);font-weight:600;}
+  .empty-state{
+    text-align:center;
+    padding:50px 20px;
+    color:var(--ink-soft);
+  }
+  .empty-state .em-icon{font-size:40px;margin-bottom:10px;}
+
+  .fab-wrap{
+    position:fixed;
+    bottom:14px;right:14px;
+    display:flex;flex-direction:column;gap:10px;
+    z-index:40;
+  }
+  .fab{
+    width:52px;height:52px;border-radius:50%;
+    background:var(--green-deep);color:var(--paper);
+    display:flex;align-items:center;justify-content:center;
+    font-size:24px;border:none;box-shadow:0 4px 14px rgba(27,77,62,0.35);
+    cursor:pointer;
+  }
+  .fab.gold{background:var(--gold);color:var(--green-deep);font-size:20px;}
+
+  .modal-overlay{
+    position:fixed;inset:0;background:rgba(20,30,20,0.55);
+    display:none;align-items:flex-end;justify-content:center;
+    z-index:100;
+  }
+  .modal-overlay.active{display:flex;}
+  .modal{
+    background:var(--off-white);
+    width:100%;max-width:520px;
+    max-height:92vh;overflow-y:auto;
+    border-radius:16px 16px 0 0;
+    padding:18px 16px 24px;
+    animation:slideUp .25s ease;
+  }
+  @keyframes slideUp{from{transform:translateY(30px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+  .modal h2{
+    margin:0 0 14px;font-size:17px;color:var(--green-deep);
+    border-bottom:2px solid var(--gold-light);padding-bottom:8px;
+    font-family:'Tiro Bangla','Hind Siliguri',serif;
+  }
+  .modal-close{
+    position:absolute;top:10px;right:14px;background:none;border:none;
+    font-size:20px;color:var(--ink-soft);cursor:pointer;
+  }
+  .field-group{margin-bottom:12px;}
+  .field-group label{
+    display:block;font-size:12.5px;color:var(--ink-soft);margin-bottom:4px;font-weight:600;
+  }
+  .field-group input,.field-group textarea,.field-group select{
+    width:100%;padding:9px 10px;border-radius:7px;
+    border:1.4px solid #d8d2bd;background:var(--paper);
+    font-family:inherit;font-size:14px;color:var(--ink);
+  }
+  .field-row{display:flex;gap:10px;}
+  .field-row .field-group{flex:1;}
+  .photo-upload{
+    display:flex;align-items:center;gap:12px;margin-bottom:14px;
+  }
+  .photo-preview{
+    width:70px;height:70px;border-radius:8px;object-fit:cover;
+    border:2px dashed var(--gold);background:#eef3ef;
+    display:flex;align-items:center;justify-content:center;color:var(--green-mid);font-size:24px;
+  }
+  .modal-actions{display:flex;gap:10px;margin-top:16px;}
+  .modal-actions .btn{flex:1;}
+
+  .detail-header{display:flex;gap:14px;align-items:center;margin-bottom:14px;}
+  .detail-photo{width:80px;height:80px;border-radius:10px;object-fit:cover;border:2px solid var(--gold);}
+  .detail-header h2{margin:0;font-size:18px;color:var(--green-deep);border:none;padding:0;}
+  .detail-header p{margin:2px 0 0;font-size:13px;color:var(--ink-soft);}
+  .detail-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:10px;
+    background:var(--paper);border-radius:8px;padding:12px;
+    border:1px solid var(--gold-light);
+  }
+  .detail-grid .dg-item{font-size:13px;}
+  .detail-grid .dg-item b{display:block;font-size:11px;color:var(--ink-soft);font-weight:600;}
+  .detail-grid .dg-full{grid-column:1/-1;}
+  .retire-banner{
+    margin-top:12px;padding:10px 12px;border-radius:8px;
+    background:#eef3ef;border-left:4px solid var(--green-deep);
+    font-size:13.5px;
+  }
+  .retire-banner.soon{background:#f7e6e6;border-left-color:var(--maroon);color:var(--maroon);font-weight:600;}
+
+  #printArea{display:none;}
+
+  @media print{
+    body *{visibility:hidden;}
+    #printArea, #printArea *{visibility:visible;}
+    #printArea{
+      display:block !important;
+      position:absolute;top:0;left:0;width:100%;
+      padding:10mm;
+      font-family:'Hind Siliguri', sans-serif;
+    }
+    .print-letterhead{
+      text-align:center;border-bottom:2px solid #1B4D3E;padding-bottom:8px;margin-bottom:14px;
+    }
+    .print-letterhead h1{margin:0;font-size:20px;color:#1B4D3E;}
+    .print-letterhead p{margin:2px 0 0;font-size:12px;color:#555;}
+    table.print-table{width:100%;border-collapse:collapse;font-size:11px;}
+    table.print-table th, table.print-table td{
+      border:1px solid #999;padding:4px 6px;text-align:left;
+    }
+    table.print-table th{background:#e8e3cf;}
+    .print-card{border:1.5px solid #1B4D3E;border-radius:6px;padding:14px;}
+    .print-card .pc-head{display:flex;gap:14px;align-items:center;border-bottom:1px solid #C9A227;padding-bottom:10px;margin-bottom:10px;}
+    .print-card .pc-head img{width:80px;height:80px;object-fit:cover;border-radius:6px;border:1.5px solid #C9A227;}
+    .print-card .pc-head h2{margin:0;font-size:18px;color:#1B4D3E;}
+    .print-card .pc-head p{margin:2px 0 0;font-size:12px;color:#555;}
+    .print-card .pc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12.5px;}
+    .print-card .pc-grid b{display:block;font-size:10.5px;color:#666;}
+    .print-footer{margin-top:22px;display:flex;justify-content:space-between;font-size:11px;color:#555;}
+  }
+
+  .pw-modal .modal{max-width:360px;}
+  .pw-error{color:var(--maroon);font-size:12.5px;margin-top:4px;display:none;}
+
+  .app-footer{
+    margin:18px 14px 8px;
+    padding:14px 16px;
+    background:var(--paper);
+    border:1px solid var(--gold-light);
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .app-footer .af-icon{
+    width:42px;height:42px;border-radius:50%;
+    background:linear-gradient(135deg, var(--green-deep), var(--green-mid));
+    color:var(--gold-light);
+    display:flex;align-items:center;justify-content:center;
+    font-size:18px;font-weight:700;flex:0 0 42px;
+    border:2px solid var(--gold);
+  }
+  .app-footer .af-text{font-size:12px;color:var(--ink-soft);line-height:1.5;}
+  .app-footer .af-text b{display:block;font-size:13.5px;color:var(--green-deep);font-weight:700;}
+
+  @media print{
+    .print-footer-credit{
+      margin-top:6px;text-align:center;font-size:10px;color:#777;
+      border-top:1px dashed #ccc;padding-top:6px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header class="letterhead">
+  <div class="lh-inner">
+    <div class="lh-emblem">🎓</div>
+    <div class="lh-text">
+      <h1>মাধাইয়া মুক্তিযোদ্ধা স্মৃতি কলেজ</h1>
+      <p>চান্দিনা, কুমিল্লা</p>
+      <p style="opacity:.85;margin-top:1px;">শিক্ষক ও কর্মচারীর তথ্য</p>
+    </div>
+  </div>
+  <div class="lh-sub">
+    <span class="badge" id="totalBadge">০ জন শিক্ষক</span>
+    <button id="lockBtn" onclick="toggleEditMode()">🔒 এডিট মোড</button>
+  </div>
+</header>
+
+<div class="stats" id="statsStrip"></div>
+
+<div class="toolbar">
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="নাম বা বিষয় দিয়ে খুঁজুন..." oninput="renderList()">
+  </div>
+  <button class="btn btn-outline" onclick="printAllList()">🖨️ তালিকা প্রিন্ট</button>
+  <button class="btn btn-gold" id="exportBtn" style="display:none;" onclick="exportBackup()">⬇️ ব্যাকআপ</button>
+  <button class="btn btn-outline" id="importBtn" style="display:none;" onclick="triggerImport()">⬆️ রিস্টোর</button>
+  <input type="file" id="importFileInput" accept="application/json" style="display:none;" onchange="handleImportFile(event)">
+</div>
+
+<div id="listArea"></div>
+
+<div class="app-footer">
+  <img class="af-icon" src="data:image/jpeg;base64,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" style="object-fit:cover;">
+  <div class="af-text">
+    সফটওয়্যারটি তৈরি করেছেনঃ<b>মাহফুজুর রহমান রিমন</b>
+    প্রভাষক, ফিন্যান্স, ব্যাংকিং ও বীমা বিভাগ
+  </div>
+</div>
+
+<div class="fab-wrap">
+  <button class="fab gold" id="addFab" onclick="openAddModal()" style="display:none;" title="নতুন শিক্ষক যোগ করুন">＋</button>
+</div>
+
+<div class="modal-overlay" id="formModalOverlay">
+  <div class="modal" style="position:relative;">
+    <button class="modal-close" onclick="closeModal('formModalOverlay')">✕</button>
+    <h2 id="formModalTitle">নতুন শিক্ষক যোগ করুন</h2>
+    <form id="teacherForm" onsubmit="saveTeacher(event)">
+      <input type="hidden" id="f_id">
+      <div class="photo-upload">
+        <div class="photo-preview" id="photoPreview">📷</div>
+        <div>
+          <input type="file" id="f_photo" accept="image/*" onchange="handlePhotoUpload(event)">
+          <div style="font-size:11.5px;color:var(--ink-soft);margin-top:4px;">ছবি নির্বাচন করুন (ঐচ্ছিক)</div>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field-group">
+          <label>ইনডেক্স নম্বর (মাউশি)</label>
+          <input type="text" id="f_indexNumber" placeholder="যেমনঃ ১২৩৪৫৬৭৮৯">
+        </div>
+        <div class="field-group">
+          <label>বিষয়</label>
+          <input type="text" id="f_subject" placeholder="যেমনঃ ফিন্যান্স" required>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label>পূর্ণ নাম *</label>
+        <input type="text" id="f_name" required>
+      </div>
+
+      <div class="field-group">
+        <label>ঠিকানা</label>
+        <textarea id="f_address" rows="2"></textarea>
+      </div>
+
+      <div class="field-group">
+        <label>একাডেমিক যোগ্যতা</label>
+        <input type="text" id="f_academic" placeholder="যেমনঃ এম.কম, বি.এড">
+      </div>
+
+      <div class="field-row">
+        <div class="field-group">
+          <label>জন্ম তারিখ *</label>
+          <input type="date" id="f_dob" required>
+        </div>
+        <div class="field-group">
+          <label>কলেজে যোগদানের তারিখ *</label>
+          <input type="date" id="f_joining" required>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label>এমপিওভুক্তির তারিখ</label>
+        <input type="date" id="f_mpo">
+      </div>
+
+      <div class="field-row">
+        <div class="field-group">
+          <label>বেতন গ্রেড</label>
+          <input type="text" id="f_grade" placeholder="যেমনঃ ৬ষ্ঠ গ্রেড">
+        </div>
+        <div class="field-group">
+          <label>বেতন স্কেল</label>
+          <input type="text" id="f_scale" placeholder="যেমনঃ ৩৫৫০০-৬৭০১০">
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field-group">
+          <label>মোবাইল নম্বর</label>
+          <input type="tel" id="f_mobile" placeholder="01XXXXXXXXX">
+        </div>
+        <div class="field-group">
+          <label>ই-মেইল</label>
+          <input type="email" id="f_email" placeholder="example@gmail.com">
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label>জাতীয় পরিচয়পত্র নম্বর (NID)</label>
+        <input type="text" id="f_nid">
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn btn-maroon" id="deleteBtn" style="display:none;" onclick="deleteCurrentTeacher()">মুছে ফেলুন</button>
+        <button type="submit" class="btn btn-green">সংরক্ষণ করুন</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="modal-overlay" id="detailModalOverlay">
+  <div class="modal" style="position:relative;">
+    <button class="modal-close" onclick="closeModal('detailModalOverlay')">✕</button>
+    <div id="detailContent"></div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="printSingle(currentDetailId)">🖨️ প্রিন্ট করুন</button>
+      <button class="btn btn-gold" id="editFromDetailBtn" style="display:none;" onclick="editFromDetail()">✎ সম্পাদনা</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay pw-modal" id="pwModalOverlay">
+  <div class="modal">
+    <h2>পাসওয়ার্ড দিন</h2>
+    <div class="field-group">
+      <input type="password" id="pwInput" placeholder="এডিট মোডের পাসওয়ার্ড" autocomplete="off">
+      <div class="pw-error" id="pwError">পাসওয়ার্ড সঠিক নয়!</div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal('pwModalOverlay')">বাতিল</button>
+      <button class="btn btn-green" onclick="checkPassword()">প্রবেশ করুন</button>
+    </div>
+  </div>
+</div>
+
+<div id="printArea"></div>
+
+<script>
+const COLLEGE_NAME = "মাধাইয়া মুক্তিযোদ্ধা স্মৃতি কলেজ";
+const COLLEGE_SUB = "চান্দিনা, কুমিল্লা";
+let EDIT_PASSWORD = "Rimon@College26";
+const RETIREMENT_AGE = 60;
+
+let db;
+let editMode = false;
+let currentDetailId = null;
+let pendingPhotoData = null;
+
+function openDB(){
+  return new Promise((resolve, reject) => {
+    const req = indexedDB.open("staffDB", 1);
+    req.onupgradeneeded = (e) => {
+      const database = e.target.result;
+      if(!database.objectStoreNames.contains("teachers")){
+        database.createObjectStore("teachers", { keyPath: "id", autoIncrement: true });
+      }
+    };
+    req.onsuccess = (e) => { db = e.target.result; resolve(db); };
+    req.onerror = (e) => reject(e);
+  });
+}
+
+function getAllTeachers(){
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction("teachers", "readonly");
+    const store = tx.objectStore("teachers");
+    const req = store.getAll();
+    req.onsuccess = () => resolve(req.result || []);
+    req.onerror = (e) => reject(e);
+  });
+}
+
+function saveTeacherToDB(teacher){
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction("teachers", "readwrite");
+    const store = tx.objectStore("teachers");
+    const req = teacher.id ? store.put(teacher) : store.add(teacher);
+    req.onsuccess = () => resolve(req.result);
+    req.onerror = (e) => reject(e);
+  });
+}
+
+function deleteTeacherFromDB(id){
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction("teachers", "readwrite");
+    const store = tx.objectStore("teachers");
+    const req = store.delete(id);
+    req.onsuccess = () => resolve();
+    req.onerror = (e) => reject(e);
+  });
+}
+
+function toBnDigits(num){
+  const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+  return String(num).replace(/[0-9]/g, d => bn[d]);
+}
+function bnDate(dateStr){
+  if(!dateStr) return "-";
+  const d = new Date(dateStr);
+  const months = ["জানুয়ারি","ফেব্রুয়ারি","মার্চ","এপ্রিল","মে","জুন","জুলাই","আগস্ট","সেপ্টেম্বর","অক্টোবর","নভেম্বর","ডিসেম্বর"];
+  return `${toBnDigits(d.getDate())} ${months[d.getMonth()]}, ${toBnDigits(d.getFullYear())}`;
+}
+
+function calcExperience(joiningStr){
+  if(!joiningStr) return "-";
+  const join = new Date(joiningStr);
+  const now = new Date();
+  let years = now.getFullYear() - join.getFullYear();
+  let months = now.getMonth() - join.getMonth();
+  let days = now.getDate() - join.getDate();
+  if(days < 0){ months--; }
+  if(months < 0){ years--; months += 12; }
+  if(years < 0) return "যোগদান হয়নি এখনো";
+  return `${toBnDigits(years)} বছর ${toBnDigits(months)} মাস`;
+}
+
+function calcRetirement(dobStr){
+  if(!dobStr) return null;
+  const dob = new Date(dobStr);
+  const retireDate = new Date(dob);
+  retireDate.setFullYear(dob.getFullYear() + RETIREMENT_AGE);
+  const now = new Date();
+  const diffMs = retireDate - now;
+  if(diffMs <= 0){
+    return { date: retireDate, remaining: "অবসরপ্রাপ্ত", isPast: true, years:0, months:0 };
+  }
+  let years = retireDate.getFullYear() - now.getFullYear();
+  let months = retireDate.getMonth() - now.getMonth();
+  let days = retireDate.getDate() - now.getDate();
+  if(days < 0){ months--; }
+  if(months < 0){ years--; months += 12; }
+  return { date: retireDate, remaining: `${toBnDigits(years)} বছর ${toBnDigits(months)} মাস`, isPast:false, years, months };
+}
+
+async function renderList(){
+  const all = await getAllTeachers();
+  all.sort((a,b) => (a.serial||0) - (b.serial||0));
+  const q = document.getElementById("searchInput").value.trim().toLowerCase();
+  const filtered = q ? all.filter(t =>
+      (t.name||"").toLowerCase().includes(q) ||
+      (t.subject||"").toLowerCase().includes(q) ||
+      (t.indexNumber||"").toLowerCase().includes(q)
+    ) : all;
+
+  document.getElementById("totalBadge").textContent = `${toBnDigits(all.length)} জন শিক্ষক`;
+
+  const soon = all.filter(t => {
+    const r = calcRetirement(t.dob);
+    return r && !r.isPast && r.years < 1;
+  }).length;
+  const retired = all.filter(t => {
+    const r = calcRetirement(t.dob);
+    return r && r.isPast;
+  }).length;
+  document.getElementById("statsStrip").innerHTML = `
+    <div class="stat-chip"><b>${toBnDigits(all.length)}</b><span>মোট শিক্ষক</span></div>
+    <div class="stat-chip warn"><b>${toBnDigits(soon)}</b><span>১ বছরের মধ্যে অবসর</span></div>
+    <div class="stat-chip"><b>${toBnDigits(retired)}</b><span>অবসরপ্রাপ্ত</span></div>
+  `;
+
+  const listArea = document.getElementById("listArea");
+  if(filtered.length === 0){
+    listArea.innerHTML = `<div class="empty-state"><div class="em-icon">📋</div>${all.length===0 ? "এখনো কোনো শিক্ষকের তথ্য যোগ করা হয়নি।" : "কোনো ফলাফল পাওয়া যায়নি।"}</div>`;
+    return;
+  }
+
+  listArea.innerHTML = filtered.map(t => {
+    const retire = calcRetirement(t.dob);
+    const retireSoon = retire && !retire.isPast && retire.years < 1;
+    const photoHtml = t.photo
+      ? `<img class="tc-photo" src="${t.photo}">`
+      : `<div class="tc-photo placeholder">👤</div>`;
+    return `
+      <div class="teacher-card" data-serial="${toBnDigits(t.serial || '-')}" onclick="openDetail(${t.id})">
+        ${photoHtml}
+        <div class="tc-info">
+          <h3>${t.name || 'নাম নেই'}</h3>
+          <div class="tc-subject">${t.subject || ''}${t.indexNumber ? ' • ইনডেক্সঃ '+t.indexNumber : ''}</div>
+          <div class="tc-meta">
+            <span>অভিজ্ঞতাঃ ${calcExperience(t.joining)}</span>
+            ${retire ? `<span class="${retireSoon || retire.isPast ? 'retire-soon' : ''}">${retire.isPast ? 'অবসরপ্রাপ্ত' : 'অবসরে বাকিঃ '+retire.remaining}</span>` : ''}
+          </div>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+function openModal(id){ document.getElementById(id).classList.add("active"); }
+function closeModal(id){ document.getElementById(id).classList.remove("active"); }
+
+function openAddModal(){
+  if(!editMode){ return; }
+  document.getElementById("teacherForm").reset();
+  document.getElementById("f_id").value = "";
+  document.getElementById("formModalTitle").textContent = "নতুন শিক্ষক যোগ করুন";
+  document.getElementById("photoPreview").innerHTML = "📷";
+  document.getElementById("deleteBtn").style.display = "none";
+  pendingPhotoData = null;
+  openModal("formModalOverlay");
+}
+
+async function openEditModal(id){
+  const all = await getAllTeachers();
+  const t = all.find(x => x.id === id);
+  if(!t) return;
+  document.getElementById("f_id").value = t.id;
+  document.getElementById("f_indexNumber").value = t.indexNumber || "";
+  document.getElementById("f_subject").value = t.subject || "";
+  document.getElementById("f_name").value = t.name || "";
+  document.getElementById("f_address").value = t.address || "";
+  document.getElementById("f_academic").value = t.academic || "";
+  document.getElementById("f_dob").value = t.dob || "";
+  document.getElementById("f_joining").value = t.joining || "";
+  document.getElementById("f_mpo").value = t.mpo || "";
+  document.getElementById("f_grade").value = t.grade || "";
+  document.getElementById("f_scale").value = t.scale || "";
+  document.getElementById("f_mobile").value = t.mobile || "";
+  document.getElementById("f_email").value = t.email || "";
+  document.getElementById("f_nid").value = t.nid || "";
+  pendingPhotoData = t.photo || null;
+  document.getElementById("photoPreview").innerHTML = t.photo ? `<img src="${t.photo}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">` : "📷";
+  document.getElementById("formModalTitle").textContent = "শিক্ষকের তথ্য সম্পাদনা করুন";
+  document.getElementById("deleteBtn").style.display = "inline-block";
+  closeModal("detailModalOverlay");
+  openModal("formModalOverlay");
+}
+
+function handlePhotoUpload(e){
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(ev){
+    const img = new Image();
+    img.onload = function(){
+      const canvas = document.createElement("canvas");
+      const maxDim = 300;
+      let w = img.width, h = img.height;
+      if(w > h && w > maxDim){ h = h*(maxDim/w); w = maxDim; }
+      else if(h > maxDim){ w = w*(maxDim/h); h = maxDim; }
+      canvas.width = w; canvas.height = h;
+      canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+      pendingPhotoData = canvas.toDataURL("image/jpeg", 0.8);
+      document.getElementById("photoPreview").innerHTML = `<img src="${pendingPhotoData}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">`;
+    };
+    img.src = ev.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+async function saveTeacher(e){
+  e.preventDefault();
+  const id = document.getElementById("f_id").value;
+  const all = await getAllTeachers();
+
+  const teacher = {
+    indexNumber: document.getElementById("f_indexNumber").value.trim(),
+    subject: document.getElementById("f_subject").value.trim(),
+    name: document.getElementById("f_name").value.trim(),
+    address: document.getElementById("f_address").value.trim(),
+    academic: document.getElementById("f_academic").value.trim(),
+    dob: document.getElementById("f_dob").value,
+    joining: document.getElementById("f_joining").value,
+    mpo: document.getElementById("f_mpo").value,
+    grade: document.getElementById("f_grade").value.trim(),
+    scale: document.getElementById("f_scale").value.trim(),
+    mobile: document.getElementById("f_mobile").value.trim(),
+    email: document.getElementById("f_email").value.trim(),
+    nid: document.getElementById("f_nid").value.trim(),
+    photo: pendingPhotoData
+  };
+
+  if(id){
+    teacher.id = Number(id);
+    const existing = all.find(x => x.id === teacher.id);
+    teacher.serial = existing ? existing.serial : (all.length + 1);
+  } else {
+    const maxSerial = all.reduce((m,t) => Math.max(m, t.serial||0), 0);
+    teacher.serial = maxSerial + 1;
+  }
+
+  await saveTeacherToDB(teacher);
+  closeModal("formModalOverlay");
+  renderList();
+}
+
+function deleteCurrentTeacher(){
+  const id = Number(document.getElementById("f_id").value);
+  if(!id) return;
+  if(confirm("আপনি কি নিশ্চিত এই শিক্ষকের তথ্য মুছে ফেলতে চান?")){
+    deleteTeacherFromDB(id).then(() => {
+      closeModal("formModalOverlay");
+      renderList();
+    });
+  }
+}
+
+async function openDetail(id){
+  const all = await getAllTeachers();
+  const t = all.find(x => x.id === id);
+  if(!t) return;
+  currentDetailId = id;
+  const retire = calcRetirement(t.dob);
+  const photoHtml = t.photo ? `<img class="detail-photo" src="${t.photo}">` : `<div class="detail-photo" style="display:flex;align-items:center;justify-content:center;background:#eef3ef;font-size:30px;">👤</div>`;
+
+  document.getElementById("detailContent").innerHTML = `
+    <div class="detail-header">
+      ${photoHtml}
+      <div>
+        <h2>${t.name}</h2>
+        <p>${t.subject || ''}${t.indexNumber ? ' • ইনডেক্সঃ '+t.indexNumber : ''}</p>
+      </div>
+    </div>
+    <div class="detail-grid">
+      <div class="dg-item"><b>জন্ম তারিখ</b>${bnDate(t.dob)}</div>
+      <div class="dg-item"><b>যোগদানের তারিখ</b>${bnDate(t.joining)}</div>
+      <div class="dg-item"><b>এমপিওভুক্তির তারিখ</b>${t.mpo ? bnDate(t.mpo) : '-'}</div>
+      <div class="dg-item"><b>অভিজ্ঞতা</b>${calcExperience(t.joining)}</div>
+      <div class="dg-item"><b>একাডেমিক যোগ্যতা</b>${t.academic || '-'}</div>
+      <div class="dg-item"><b>বেতন গ্রেড</b>${t.grade || '-'}</div>
+      <div class="dg-item"><b>বেতন স্কেল</b>${t.scale || '-'}</div>
+      <div class="dg-item"><b>মোবাইল</b>${t.mobile || '-'}</div>
+      <div class="dg-item"><b>ই-মেইল</b>${t.email || '-'}</div>
+      <div class="dg-item"><b>NID</b>${t.nid || '-'}</div>
+      <div class="dg-item dg-full"><b>ঠিকানা</b>${t.address || '-'}</div>
+    </div>
+    ${retire ? `<div class="retire-banner ${retire.isPast ? 'soon' : (retire.years < 1 ? 'soon' : '')}">
+      ${retire.isPast
+        ? `⚠️ এই শিক্ষক ইতিমধ্যে অবসরে গেছেন (${bnDate(retire.date.toISOString().slice(0,10))})`
+        : `📅 অবসরের তারিখঃ ${bnDate(retire.date.toISOString().slice(0,10))} — বাকি আছে ${retire.remaining}`}
+    </div>` : ''}
+  `;
+  document.getElementById("editFromDetailBtn").style.display = editMode ? "inline-block" : "none";
+  openModal("detailModalOverlay");
+}
+
+function editFromDetail(){
+  if(currentDetailId) openEditModal(currentDetailId);
+}
+
+function toggleEditMode(){
+  if(editMode){
+    editMode = false;
+    updateEditModeUI();
+  } else {
+    document.getElementById("pwInput").value = "";
+    document.getElementById("pwError").style.display = "none";
+    openModal("pwModalOverlay");
+  }
+}
+
+function checkPassword(){
+  const val = document.getElementById("pwInput").value;
+  if(val === EDIT_PASSWORD){
+    editMode = true;
+    closeModal("pwModalOverlay");
+    updateEditModeUI();
+  } else {
+    document.getElementById("pwError").style.display = "block";
+  }
+}
+
+function updateEditModeUI(){
+  const lockBtn = document.getElementById("lockBtn");
+  const addFab = document.getElementById("addFab");
+  const exportBtn = document.getElementById("exportBtn");
+  const importBtn = document.getElementById("importBtn");
+  if(editMode){
+    lockBtn.textContent = "🔓 এডিট মোড চালু";
+    lockBtn.classList.add("unlocked");
+    addFab.style.display = "flex";
+    exportBtn.style.display = "inline-block";
+    importBtn.style.display = "inline-block";
+  } else {
+    lockBtn.textContent = "🔒 এডিট মোড";
+    lockBtn.classList.remove("unlocked");
+    addFab.style.display = "none";
+    exportBtn.style.display = "none";
+    importBtn.style.display = "none";
+  }
+  renderList();
+}
+
+/* ================= BACKUP (EXPORT / IMPORT) ================= */
+async function exportBackup(){
+  const all = await getAllTeachers();
+  const payload = {
+    app: "MMSC Staff Database",
+    exportedAt: new Date().toISOString(),
+    count: all.length,
+    teachers: all
+  };
+  const dataStr = JSON.stringify(payload, null, 2);
+  const blob = new Blob([dataStr], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  const dateStr = new Date().toISOString().slice(0,10);
+  a.href = url;
+  a.download = `staff-backup-${dateStr}.json`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+function triggerImport(){
+  document.getElementById("importFileInput").value = "";
+  document.getElementById("importFileInput").click();
+}
+
+async function handleImportFile(e){
+  const file = e.target.files[0];
+  if(!file) return;
+  let data;
+  try{
+    const text = await file.text();
+    const parsed = JSON.parse(text);
+    data = Array.isArray(parsed) ? parsed : parsed.teachers;
+  } catch(err){
+    alert("ফাইলটি সঠিক ফরম্যাটে নেই। সঠিক ব্যাকআপ (.json) ফাইল বেছে নিন।");
+    return;
+  }
+  if(!Array.isArray(data)){
+    alert("ভুল ব্যাকআপ ফাইল। এই ফাইলে কোনো শিক্ষকের তথ্য পাওয়া যায়নি।");
+    return;
+  }
+  const confirmMsg = `এই ব্যাকআপ ফাইলে ${data.length} জন শিক্ষকের তথ্য আছে।\nবর্তমানে অ্যাপে থাকা সব তথ্য মুছে এই ব্যাকআপ দিয়ে প্রতিস্থাপন করা হবে।\nআপনি কি নিশ্চিত?`;
+  if(!confirm(confirmMsg)) return;
+
+  await new Promise((resolve, reject) => {
+    const tx = db.transaction("teachers", "readwrite");
+    tx.objectStore("teachers").clear();
+    tx.oncomplete = resolve;
+    tx.onerror = reject;
+  });
+
+  await new Promise((resolve, reject) => {
+    const tx = db.transaction("teachers", "readwrite");
+    const store = tx.objectStore("teachers");
+    data.forEach(t => {
+      const record = { ...t };
+      if(record.id != null){ store.put(record); } else { store.add(record); }
+    });
+    tx.oncomplete = resolve;
+    tx.onerror = reject;
+  });
+
+  alert("ব্যাকআপ থেকে সব তথ্য সফলভাবে পুনরুদ্ধার হয়েছে।");
+  renderList();
+}
+
+async function printAllList(){
+  const all = await getAllTeachers();
+  all.sort((a,b) => (a.serial||0) - (b.serial||0));
+  const rows = all.map(t => {
+    const retire = calcRetirement(t.dob);
+    return `<tr>
+      <td>${toBnDigits(t.serial||'-')}</td>
+      <td>${t.indexNumber||'-'}</td>
+      <td>${t.name||'-'}</td>
+      <td>${t.subject||'-'}</td>
+      <td>${t.academic||'-'}</td>
+      <td>${bnDate(t.joining)}</td>
+      <td>${t.mpo ? bnDate(t.mpo) : '-'}</td>
+      <td>${calcExperience(t.joining)}</td>
+      <td>${retire ? (retire.isPast ? 'অবসরপ্রাপ্ত' : retire.remaining) : '-'}</td>
+    </tr>`;
+  }).join("");
+
+  document.getElementById("printArea").innerHTML = `
+    <div class="print-letterhead">
+      <h1>${COLLEGE_NAME}</h1>
+      <p>${COLLEGE_SUB}</p>
+      <p style="margin-top:6px;font-weight:600;">শিক্ষক তথ্য তালিকা — প্রস্তুতের তারিখঃ ${bnDate(new Date().toISOString().slice(0,10))}</p>
+    </div>
+    <table class="print-table">
+      <thead>
+        <tr>
+          <th>ক্রঃ নং</th><th>ইনডেক্স নং</th><th>নাম</th><th>বিষয়</th><th>একাডেমিক যোগ্যতা</th>
+          <th>যোগদান</th><th>এমপিও</th><th>অভিজ্ঞতা</th><th>অবসরে বাকি</th>
+        </tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>
+    <div class="print-footer">
+      <span>মোট শিক্ষকঃ ${toBnDigits(all.length)} জন</span>
+      <span>অধ্যক্ষের স্বাক্ষরঃ ______________________</span>
+    </div>
+    <div class="print-footer-credit">সফটওয়্যারটি তৈরি করেছেনঃ মাহফুজুর রহমান রিমন, প্রভাষক, ফিন্যান্স, ব্যাংকিং ও বীমা বিভাগ</div>
+  `;
+  setTimeout(() => window.print(), 100);
+}
+
+async function printSingle(id){
+  const all = await getAllTeachers();
+  const t = all.find(x => x.id === id);
+  if(!t) return;
+  const retire = calcRetirement(t.dob);
+  document.getElementById("printArea").innerHTML = `
+    <div class="print-letterhead">
+      <h1>${COLLEGE_NAME}</h1>
+      <p>${COLLEGE_SUB}</p>
+      <p style="margin-top:6px;font-weight:600;">শিক্ষক তথ্য বিবরণী</p>
+    </div>
+    <div class="print-card">
+      <div class="pc-head">
+        ${t.photo ? `<img src="${t.photo}">` : ''}
+        <div>
+          <h2>${t.name}</h2>
+          <p>${t.subject||''}${t.indexNumber ? ' • ইনডেক্সঃ '+t.indexNumber : ''}</p>
+        </div>
+      </div>
+      <div class="pc-grid">
+        <div><b>জন্ম তারিখ</b>${bnDate(t.dob)}</div>
+        <div><b>যোগদানের তারিখ</b>${bnDate(t.joining)}</div>
+        <div><b>এমপিওভুক্তির তারিখ</b>${t.mpo ? bnDate(t.mpo) : '-'}</div>
+        <div><b>অভিজ্ঞতা</b>${calcExperience(t.joining)}</div>
+        <div><b>একাডেমিক যোগ্যতা</b>${t.academic||'-'}</div>
+        <div><b>বেতন গ্রেড</b>${t.grade||'-'}</div>
+        <div><b>বেতন স্কেল</b>${t.scale||'-'}</div>
+        <div><b>মোবাইল</b>${t.mobile||'-'}</div>
+        <div><b>ই-মেইল</b>${t.email||'-'}</div>
+        <div><b>NID</b>${t.nid||'-'}</div>
+        <div style="grid-column:1/-1;"><b>ঠিকানা</b>${t.address||'-'}</div>
+        <div style="grid-column:1/-1;"><b>অবসরের তথ্য</b>${retire ? (retire.isPast ? 'অবসরপ্রাপ্ত ('+bnDate(retire.date.toISOString().slice(0,10))+')' : bnDate(retire.date.toISOString().slice(0,10))+' — বাকি '+retire.remaining) : '-'}</div>
+      </div>
+    </div>
+    <div class="print-footer">
+      <span>প্রস্তুতের তারিখঃ ${bnDate(new Date().toISOString().slice(0,10))}</span>
+      <span>অধ্যক্ষের স্বাক্ষরঃ ______________________</span>
+    </div>
+    <div class="print-footer-credit">সফটওয়্যারটি তৈরি করেছেনঃ মাহফুজুর রহমান রিমন, প্রভাষক, ফিন্যান্স, ব্যাংকিং ও বীমা বিভাগ</div>
+  `;
+  setTimeout(() => window.print(), 100);
+}
+
+window.addEventListener("load", async () => {
+  await openDB();
+  renderList();
+});
+</script>
+</body>
+</html>
